@@ -1,0 +1,31 @@
+<%- include('./partials/header')%>
+
+<h1 class="text-center">This is a profile page</h1>
+<div class="m-auto w-max flex gap-10 mt-10">
+  <h1><%= user.name%></h1>
+<h1>followers <%= user.followers.length%></h1>
+<h1>Following <%= user.following.length%></h1>
+</div>
+
+<p class="bg-stone-400 px-5 py-2 w-max m-auto"> <a href="/logout">Logout</a></p>
+
+
+<div class="">
+  <%allUsers.map((users)=>{%>
+    <%if(users.name != user.name){%>
+      <div class="flex gap-10 bg-stone-400 p-5 w-max m-auto mt-10">
+        <p><%= users.name%></p>
+
+        <%if(user.following.includes(users._id)){%>
+          <a href="/unfollow/<%= users._id%>">Un Follow</a>
+        <%}else{%>
+          <a href="/follow/<%= users._id%>">Follow</a>
+        <%}%>
+    
+      </div>
+    <%}%>
+  <%})%>
+</div>
+
+
+<%- include('./partials/footer')%>
